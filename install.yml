@@ -1,0 +1,42 @@
+---
+- hosts: infra
+  remote_user: centos
+  gather_facts: no
+  become: true
+  tasks:
+  - name: Install Python
+    yum:
+      name: python3
+      state: present
+      use_backend: yum4
+
+  - name: Install Java
+    yum:
+      name: java
+      state: present
+      update_cache: yes
+      use_backend: yum4
+
+  - name: Get Jenkins
+    get_url: 
+      url: https://pkg.jenkins.io/redhat-stable/jenkins.repo
+      dest: /etc/yum.repos.d/jenkins.repo
+
+  - name: Get Jenkins Key
+    rpm_key:
+      state: present
+      key: https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+
+  - name: Install Jenkins
+    yum:
+      name: jenkins
+      disable_gpg_check: yes
+      state: present
+      update_cache: yes
+      use_backend: yum4
+
+  - name: Start Jenkins
+    systemd:
+      name: jenkins
+      state: started
+      enabled: true
