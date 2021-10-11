@@ -1,2 +1,2 @@
 [all]
-infra ansible_host=34.224.25.119 ansible_user=centos
+infra ansible_host=3.87.61.96 ansible_user=centos

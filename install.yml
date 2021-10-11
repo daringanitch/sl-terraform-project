@@ -8,14 +8,14 @@
     yum:
       name: python3
       state: present
-      use_backend: yum4
+      use_backend: dnf
 
   - name: Install Java
     yum:
       name: java
       state: present
       update_cache: yes
-      use_backend: yum4
+      use_backend: dnf
 
   - name: Get Jenkins
     get_url: 
@@ -33,7 +33,7 @@
       disable_gpg_check: yes
       state: present
       update_cache: yes
-      use_backend: yum4
+      use_backend: dnf
 
   - name: Start Jenkins
     systemd:
