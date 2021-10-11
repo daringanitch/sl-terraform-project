@@ -8,6 +8,7 @@
     yum:
       name: python3
       state: present
+      update_cache: yes
       use_backend: dnf
 
   - name: Install Java
