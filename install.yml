@@ -11,6 +11,13 @@
       update_cache: yes
       use_backend: dnf
 
+  - name: Install EPEL repo
+    yum:
+      name: epel-release
+      state: present
+      update_cache: yes
+      use_backend: dnf
+
   - name: Install Java
     yum:
       name: java-1.8.0-openjdk-devel
